@@ -2,11 +2,12 @@ import os
 from pathlib import Path
 from PyPDF2 import PdfReader, PdfWriter
 
-input_folder = Path(r'C:\Users\gabriel.oliveira\OneDrive - Grupo Value\Área de Trabalho\Teste')
-cover_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Capa - Devolutiva Complementar.pdf')
-summary_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Súmario - Devolutiva Complementar.pdf') 
-other_sources_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Canal de Atendimento e Contatos - Devolutiva Complementar 1.pdf')  
+input_folder = Path(r'C:\Users\gabriel.oliveira\OneDrive - Grupo Value\Área de Trabalho\Teste') #pasta com arquivos
+cover_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Capa - Devolutiva Complementar.pdf') #capa
+summary_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Súmario - Devolutiva Complementar.pdf') #sumário
+other_sources_pdf = Path(r'C:\Users\gabriel.oliveira\Downloads\Canal de Atendimento e Contatos - Devolutiva Complementar 1.pdf') #página final
 
+#definição
 def add_cover_and_summary(input_pdf, output_pdf, cover_pdf, summary_pdf, other_sources_pdf):
     cover = PdfReader(cover_pdf)
     summary = PdfReader(summary_pdf)
@@ -24,7 +25,7 @@ def add_cover_and_summary(input_pdf, output_pdf, cover_pdf, summary_pdf, other_s
     for page_num in range(len(original.pages)):
         writer.add_page(original.pages[page_num])
 
-    # Adicionando a página de outras origens no final
+    # Adicionando a página de atendimento no final
     writer.add_page(other_sources.pages[0])
 
     # Escrevendo o novo PDF
